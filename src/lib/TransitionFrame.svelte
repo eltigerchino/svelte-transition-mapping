@@ -7,7 +7,7 @@
 
 <script
   lang="ts"
-  generics="TElement extends HTMLElement, TTransition extends Transition"
+  generics="TElement extends keyof HTMLElementTagNameMap, TTransition extends Transition"
 >
   import type { ComponentProps } from "svelte";
   import Frame, { type Transition } from "./Frame.svelte";

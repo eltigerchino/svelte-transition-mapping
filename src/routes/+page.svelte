@@ -3,5 +3,9 @@
   import { fly } from "svelte/transition";
 </script>
 
-<TransitionFrame transition="{fly}" transitionParams="{{ blur: 5 }}"
+<TransitionFrame
+  as="a"
+  href="/dog"
+  transition="{fly}"
+  transitionParams="{{ blur: 5 }}"
 ></TransitionFrame>

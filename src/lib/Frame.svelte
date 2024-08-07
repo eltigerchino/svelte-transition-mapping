@@ -13,16 +13,16 @@
 
 <script
   lang="ts"
-  generics="TElement extends HTMLElement, TTransition extends Transition"
+  generics="TElement extends keyof HTMLElementTagNameMap, TTransition extends Transition"
 >
   interface Props {
-    as?: Lowercase<TElement["tagName"]>;
-    action?: Action<TElement, any, any> | undefined;
+    as?: TElement;
+    action?: Action<HTMLElementTagNameMap[TElement], any, any> | undefined;
     actionOptions?: Record<string, unknown> | undefined;
-    class?: HTMLElement["className"];
-    node?: TElement;
+    class?: HTMLElementTagNameMap[TElement]["className"];
+    node?: HTMLElementTagNameMap[TElement];
     href?:
-      | (TElement extends
+      | (HTMLElementTagNameMap[TElement] extends
           | HTMLAnchorElement
           | HTMLLinkElement
           | HTMLAreaElement
@@ -42,15 +42,19 @@
 
   type $$Props = Props & typeof $$restProps;
 
-  export let as: Lowercase<TElement["tagName"]> | undefined = undefined;
-  export let action: Action<TElement, any, any> = () => {};
+  export let as: TElement | undefined = undefined;
+  export let action: Action<
+    HTMLElementTagNameMap[TElement],
+    any,
+    any
+  > = () => {};
   export let actionOptions: Parameters<typeof action>[1] = undefined;
   export let transition: TTransition = (() => ({})) as any;
   export let transitionParams: Parameters<TTransition>[1] = undefined;
-  export let node: TElement | undefined = undefined;
+  export let node: HTMLElementTagNameMap[TElement] | undefined = undefined;
   export let testId: string | undefined = undefined;
   export let href:
-    | (TElement extends
+    | (HTMLElementTagNameMap[TElement] extends
         | HTMLAnchorElement
         | HTMLLinkElement
         | HTMLAreaElement
